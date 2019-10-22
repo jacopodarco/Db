@@ -1,0 +1,6 @@
+C:\Users\CORSO 55\Desktop\MATERIALE CORSO EURIS\Db\GestioneLavoratori-Db\GestioneLavoratori-Db\bin\Debug\GestioneLavoratori-Db.exe.config
+C:\Users\CORSO 55\Desktop\MATERIALE CORSO EURIS\Db\GestioneLavoratori-Db\GestioneLavoratori-Db\bin\Debug\GestioneLavoratori-Db.exe
+C:\Users\CORSO 55\Desktop\MATERIALE CORSO EURIS\Db\GestioneLavoratori-Db\GestioneLavoratori-Db\bin\Debug\GestioneLavoratori-Db.pdb
+C:\Users\CORSO 55\Desktop\MATERIALE CORSO EURIS\Db\GestioneLavoratori-Db\GestioneLavoratori-Db\obj\Debug\GestioneLavoratori-Db.csprojAssemblyReference.cache
+C:\Users\CORSO 55\Desktop\MATERIALE CORSO EURIS\Db\GestioneLavoratori-Db\GestioneLavoratori-Db\obj\Debug\GestioneLavoratori-Db.exe
+C:\Users\CORSO 55\Desktop\MATERIALE CORSO EURIS\Db\GestioneLavoratori-Db\GestioneLavoratori-Db\obj\Debug\GestioneLavoratori-Db.pdb

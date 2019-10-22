@@ -1,2 +1,2 @@
-# Db
+# Esercizio lavoratori - SQL
  

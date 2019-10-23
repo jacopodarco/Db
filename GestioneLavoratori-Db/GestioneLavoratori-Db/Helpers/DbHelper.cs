@@ -32,9 +32,9 @@ namespace GestioneLavoratori_Db.Helpers
 
                 CommandType = CommandType.Text,
 
-                CommandText = "INSERT INTO Lavoratori(ID,Nome,Cognome,Eta,Retribuzione,Tipo)" +
+                CommandText = "INSERT INTO Lavoratori(ID,Nome,Cognome,Eta,Retribuzione,Tipo,RAL,Tasse)" +
                 " VALUES" +
-                "(@ID, @Nome,@Cognome,@Eta,@Retribuzione,@Tipo)"
+                "(@ID, @Nome,@Cognome,@Eta,@Retribuzione,@Tipo,@RAL,@Tasse)"
             };
 
             cmd.Parameters.Add("@ID", SqlDbType.UniqueIdentifier).Value = l.ID;
@@ -43,6 +43,8 @@ namespace GestioneLavoratori_Db.Helpers
             cmd.Parameters.Add("@Eta", SqlDbType.Int).Value = l.Eta;
             cmd.Parameters.Add("@Retribuzione", SqlDbType.Float).Value = l.Retribuzione;
             cmd.Parameters.Add("@Tipo", SqlDbType.Int).Value = l.Tipo;
+            cmd.Parameters.Add("@RAL", SqlDbType.Float).Value = l.RAL;
+            cmd.Parameters.Add("@Tasse", SqlDbType.Float).Value = l.Tasse();
 
             connection.Open();
 
@@ -50,7 +52,7 @@ namespace GestioneLavoratori_Db.Helpers
 
             connection.Close();
 
-            Console.WriteLine("{0} istanza inserita", result);
+            Console.WriteLine("SUCCESSO!", result);
         }
 
         public static void Svuota(string tabella)
@@ -68,12 +70,43 @@ namespace GestioneLavoratori_Db.Helpers
             cmd.ExecuteNonQuery();
             connection.Close();
 
-            Console.WriteLine("Hai eliminato tutte le istanze congratulazioni");
+            Console.WriteLine("SUCCESSO!");
         }
-        public static DataSet GetLav()
+        public static int Update(Lavoratore l)
+        {
+            int result = 0;
+
+            string updateQuery = "UPDATE Lavoratori SET Nome=@Nome,Cognome=@Cognome," +
+                "Retribuzione=@retribuzione, RAL=@RAL, Tasse=@Tasse," +
+                "Tipo=@Tipo " +
+                "WHERE ID = @ID";
+            SqlCommand cmd = new SqlCommand
+            {
+                Connection = GetConnection(),
+                CommandType = CommandType.Text,
+                CommandText = updateQuery
+            };
+            cmd.Parameters.Add("@Nome", SqlDbType.NVarChar, 255).Value = l.Nome;
+            cmd.Parameters.Add("@Cognome", SqlDbType.NVarChar, 255).Value = l.Cognome;
+            cmd.Parameters.Add("@Retribuzione", SqlDbType.Float).Value = l.Retribuzione;
+            cmd.Parameters.Add("@Tipo", SqlDbType.Int).Value = l.Tipo;
+            cmd.Parameters.Add("@RAL", SqlDbType.Float).Value = l.RAL;
+            cmd.Parameters.Add("@Tasse", SqlDbType.Float).Value = l.Tasse();
+
+            cmd.Parameters.AddWithValue("@ID", l.ID);
+            cmd.Connection.Open();
+            result = cmd.ExecuteNonQuery();
+            cmd.Connection.Close();
+
+            Console.WriteLine("SUCCESSO!");
+
+            return result;
+        }
+
+            public static DataSet GetLav()
         {
             DataSet result = new DataSet();
-            string selectQuery = "SELECT ID, Nome, Cognome, Eta, Tipo, Retribuzione " +
+            string selectQuery = "SELECT ID, Nome, Cognome, Eta, Tipo, Retribuzione,RAL,Tasse " +
                 "FROM Lavoratori";
 
             SqlCommand cmd = new SqlCommand(selectQuery, GetConnection());
